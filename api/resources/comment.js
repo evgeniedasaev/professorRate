@@ -18,14 +18,9 @@ jsonApi.define({
         title: jsonApi.Joi.string()
             .description('The persons name')
             .example('Марина Андреевна Шпак'),
-        year_short: jsonApi.Joi.number().min(1900).max(2017).precision(0)
-            .description('Year of start (work/studing)')
-            .example(1991),
-        year_finish: jsonApi.Joi.number().min(1900).max(2017).precision(0)
-            .description('Year of finish (work/studing)')
-            .example(2002),
-        rate: jsonApi.Joi.number().min(1900).max(2017).precision(0)
-            .description('Year of finish (work/studing)')
-            .example(2002)
+        author: jsonApi.Joi.one('user')
+            .description('The user who wrote the comment'),
+        user: jsonApi.Joi.one('user')
+            .description('The user about whom the comment was written')
     }
 })

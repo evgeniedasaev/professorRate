@@ -26,6 +26,10 @@ jsonApi.define({
             .example(2002),
         rate: jsonApi.Joi.number().min(1900).max(2017).precision(0)
             .description('Year of finish (work/studing)')
-            .example(2002)
+            .example(2002),
+        courses: jsonApi.Joi.belongsToMany({
+            resource: "course",
+            as: "users"
+        })
     }
 })
