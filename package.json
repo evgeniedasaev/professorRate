@@ -1,0 +1,19 @@
+{
+  "name": "RateUrProffesor",
+  "version": "1.0.0",
+  "description": "Professor Rate App",
+  "main": "index.js",
+  "author": "djekoff <jackensteiny@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jsonapi-server": "^2.3.2",
+    "jsonapi-store-relationaldb": "^1.2.8"
+  },
+  "devDependencies": {
+    "db-migrate": "^0.10.0-beta.20",
+    "db-migrate-mysql": "^1.1.10"
+  },
+  "scripts": {
+    "start": "node api/index.js"
+  }
+}

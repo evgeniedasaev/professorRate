@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "driver": "mysql",
+        "user": "root",
+        "password": "djxj9TUY",
+        "host": "localhost",
+        "database": "jackenstein_rateProfessor",
+        "multipleStatements": true
+    },
+    "prod": {
+        "driver": "mysql",
+        "user": "root",
+        "password": "root"
+    }
+}
