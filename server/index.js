@@ -68,7 +68,7 @@ jsonApi.setConfig({
         }
     },
     protocol: 'http',
-    hostname: 'localhost',
+    hostname: 'whereismyprofessor.djekoff.ru',
     port: 16006,
     base: 'rest',
     meta: {
