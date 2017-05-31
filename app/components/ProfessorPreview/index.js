@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 
 function ProfessorPreview(props) {
-    const {item} = props;
+    const { item, showTitle, showRate, showShow } = props;
 
     return (
         <section className="u-letter-box--large">       
@@ -14,11 +14,12 @@ function ProfessorPreview(props) {
                     </div>
                 }
                 <div className="o-grid__cell o-grid__cell--width-60">
-                    <h3 className="c-heading c-heading--medium">
-                        <Link to={'/professor/' + item.id}>
+                    {
+                        showTitle &&
+                        <h3 className="c-heading c-heading--medium">
                             {item.title}
-                        </Link>
-                    </h3>
+                        </h3>
+                    }
                     <span className="c-badge c-badge--warning">Оценка: {item.rate}</span>
                     <p className="c-paragraph">{item.about}</p>
                     {
@@ -37,6 +38,18 @@ function ProfessorPreview(props) {
                             }
                         </ul>
                     }
+                    <div className="u-letter-box--medium c-input-group">
+                        {
+                            showRate &&
+                            <a className="c-button c-button--success u-large" href="#">Оценить</a>
+                        }
+                        {
+                            showShow &&
+                            <Link className="c-button c-button--info u-large" to={'/professor/' + item.id}>
+                                Посмотреть отзывы
+                            </Link>
+                        }
+                    </div>
                 </div>
             </div>
         </section>
@@ -45,6 +58,12 @@ function ProfessorPreview(props) {
 
 ProfessorPreview.propTypes = {
     item: React.PropTypes.any,
+};
+
+ProfessorPreview.defaultProps = {
+    showTitle: true,
+    showRate: false,
+    showShow: true
 };
 
 export default ProfessorPreview;
