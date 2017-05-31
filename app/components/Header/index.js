@@ -8,7 +8,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     return (
       <header>
         <nav className="c-nav c-nav--inline c-nav--high">
-          <span className="c-nav__item">Оцени профессора</span>
+          <Link className="c-nav__item" to="/">Оцени профессора</Link>
           <Link className="c-nav__item c-nav__item--right" to="/login">Зарегистрироваться</Link>
           <Link className="c-nav__item c-nav__item--right" to="/logout">
             <i className="fa fa-sign-in"></i>&nbsp;&nbsp;Войти

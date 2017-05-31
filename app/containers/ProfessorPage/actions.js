@@ -1,5 +1,5 @@
 /*
- * Home Actions
+ * Professor Actions
  *
  * Actions change things in your application
  * Since this boilerplate uses a uni-directional data flow, specifically redux,
@@ -16,33 +16,36 @@
  */
 
 import {
-  LOAD_BEST_PROFESSORS,
-  LOAD_BEST_PROFESSORS_SUCCESS,
-  LOAD_BEST_PROFESSORS_ERROR,
+  LOAD_PROFESSOR,
+  LOAD_PROFESSOR_SUCCESS,
+  LOAD_PROFESSOR_ERROR,
 } from './constants';
 
 /**
- * Init loading of best professors list
+ * Init loading of professor
+ * 
+ * @param  {number} id The professor id for load
  *
- * @return {object}    An action object with a type of LOAD_BEST_PROFESSORS
+ * @return {object}    An action object with a type of LOAD_PROFESSOR
  */
-export function loadBestProfessors() {
+export function loadProfessor(id) {
   return {
-    type: LOAD_BEST_PROFESSORS,
+    type: LOAD_PROFESSOR,
+    id
   };
 }
 
 /**
  * Dispatched when the professors are loaded by the request saga
  *
- * @param  {array} professors The professors data
+ * @param  {array} professor The professor data
  *
- * @return {object}      An action object with a type of LOAD_BEST_PROFESSORS_SUCCESS passing the professors
+ * @return {object}      An action object with a type of LOAD_PROFESSOR_SUCCESS passing the professors
  */
-export function professorsLoaded(professors) {
+export function professorLoaded(professor) {
   return {
-    type: LOAD_BEST_PROFESSORS_SUCCESS,
-    professors,
+    type: LOAD_PROFESSOR_SUCCESS,
+    professor,
   };
 }
 
@@ -51,11 +54,11 @@ export function professorsLoaded(professors) {
  *
  * @param  {object} error The error
  *
- * @return {object}       An action object with a type of LOAD_BEST_PROFESSORS_ERROR passing the error
+ * @return {object}       An action object with a type of LOAD_PROFESSOR_ERROR passing the error
  */
-export function professorsLoadingError(error) {
+export function professorLoadingError(error) {
   return {
-    type: LOAD_BEST_PROFESSORS_ERROR,
+    type: LOAD_PROFESSOR_ERROR,
     error,
   };
 }

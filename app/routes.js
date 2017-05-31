@@ -37,24 +37,60 @@ export default function createRoutes(store) {
         });
 
         importModules.catch(errorLoading);
+      }
+    },
+    {
+      path: '/search/:qtail',
+      name: 'search',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+              import('containers/SearchPage/reducer'),
+              import('containers/SearchPage/sagas'),
+              import('containers/SearchPage'),
+            ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('search', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      }
+    },    
+    {
+      path: '/professor/:id',
+      name: 'professor',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/ProfessorPage/reducer'),
+          import('containers/ProfessorPage/sagas'),
+          import('containers/ProfessorPage'),
+        ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([reducer, sagas, component]) => {
+            injectReducer('professor', reducer.default);
+            injectSagas(sagas.default);
+
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+      }
+    },
+    {
+      path: '*',
+      name: 'notfound',
+      getComponent(nextState, cb) {
+        import('containers/NotFoundPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
       },
-    }, 
-    // {
-    //   path: '/features',
-    //   name: 'features',
-    //   getComponent(nextState, cb) {
-    //     import('containers/FeaturePage')
-    //       .then(loadModule(cb))
-    //       .catch(errorLoading);
-    //   },
-    // }, {
-    //   path: '*',
-    //   name: 'notfound',
-    //   getComponent(nextState, cb) {
-    //     import('containers/NotFoundPage')
-    //       .then(loadModule(cb))
-    //       .catch(errorLoading);
-    //   },
-    // },
+    },
   ];
 }
