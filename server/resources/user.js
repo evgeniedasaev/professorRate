@@ -15,6 +15,8 @@ jsonApi.define({
         login: jsonApi.Joi.string().email()
             .description('User login aka email')
             .example('john.smith@gmail.com'),
+        password: jsonApi.Joi.string()
+            .description('User password'),
         title: jsonApi.Joi.string()
             .description('The persons name')
             .example('Марина Андреевна Шпак'),
@@ -24,10 +26,10 @@ jsonApi.define({
         about: jsonApi.Joi.string()
             .description('The persons name')
             .example('Марина Андреевна Шпак'),
-        year_start: jsonApi.Joi.number().min(1900).max(2017).precision(0)
+        yearStart: jsonApi.Joi.number().min(1900).max(2017).precision(0)
             .description('Year of start (work/studing)')
             .example(1991),
-        year_finish: jsonApi.Joi.number().min(1900).max(2017).precision(0)
+        yearFinish: jsonApi.Joi.number().min(1900).max(2017).precision(0)
             .description('Year of finish (work/studing)')
             .example(2002),
         rate: jsonApi.Joi.number().min(1).max(5).precision(0)
@@ -46,7 +48,7 @@ jsonApi.define({
             photo: '1.jpg',
             about: `Профессор. Общий стаж работы и стаж работы по специальности – 39 лет.
                     Награжден медалью «В память 850-летия Москвы».`,
-            year_start: 1977,
+            yearStart: 1977,
             rate: 4.9,
             courses: [
                 {type: 'course', id: '1'},
@@ -67,8 +69,8 @@ jsonApi.define({
             photo: '2.jpg',
             about: `Прошла путь от инженера, ведущего разработчика радиоэлектронной аппаратуры (г. Курган, г. Новосибирск, г. Липецк, г. Зеленоград) до заведующего кафедрой «Информатика и программного обеспечения вычислительных систем».
                     Удостоена почетного звания «Почетный работник высшего профессионального образования Российской Федерации», награждена медалью «За укрепление боевого содружества».`,
-            year_start: 1977,
-            year_finish: 2003,
+            yearStart: 1977,
+            yearFinish: 2003,
             rate: 4.9,
             courses: [
                 {type: 'course', id: '1'},
@@ -83,7 +85,7 @@ jsonApi.define({
             photo: '3.jpg',
             about: `Профессор. Общий стаж работы и стаж работы по специальности – 39 лет.
                     Награжден медалью «В память 850-летия Москвы».`,
-            year_start: 1977,
+            yearStart: 1977,
             rate: 3.9,
             courses: [
                 {type: 'course', id: '2'},
@@ -96,8 +98,8 @@ jsonApi.define({
             userType: 2,
             title: 'Василий Огурцов',
             about: `Студент.`,
-            year_start: 1998,
-            year_finish: 2003,
+            yearStart: 1998,
+            yearFinish: 2003,
             rate: 5,
             courses: [
                 {type: 'course', id: '1'}
