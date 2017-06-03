@@ -59,7 +59,7 @@ App.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     logout: () => {
-      localStorage.removeItem('currentUser');
+      sessionStorage.removeItem('currentUser');
       
       dispatch(logout());
     }

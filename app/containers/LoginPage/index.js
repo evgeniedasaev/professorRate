@@ -17,8 +17,9 @@ export class LoginPage extends React.PureComponent { // eslint-disable-line reac
         this.props.logIn(login, password);
     }
 
-    componentDidMount() {
-        const { user } = this.props;
+    componentWillUpdate(nextProps, nextState) {
+        const { user } = nextProps;
+
         if (user) {
             browserHistory.push('/');
         }

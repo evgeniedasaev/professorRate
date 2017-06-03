@@ -12,7 +12,7 @@ const makeSelectCurrentUser = () => createSelector(
     let currentUser = globalState.get('currentUser');
 
     if (!currentUser) {
-      currentUser = localStorage.getItem('currentUser');
+      currentUser = sessionStorage.getItem('currentUser');
 
       if (currentUser !== null) {
         currentUser = JSON.parse(currentUser);
