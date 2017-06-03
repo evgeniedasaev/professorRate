@@ -42,24 +42,26 @@ export class ProfessorPage extends React.PureComponent { // eslint-disable-line 
         
         {
           typeof professor.comments !== 'undefined' &&
-          <div className="c-card">
-            {
-              professor.comments.map((comment, i) => {
-                return (
-                  <div key={i} className="c-card__item u-window-box--large">
-                    <div className="c-text--loud">
-                      {comment.authorName}
+          <div className="u-letter-box--medium">
+            <div className="c-card">
+              {
+                professor.comments.map((comment, i) => {
+                  return (
+                    <div key={i} className="c-card__item u-window-box--large">
+                      <div className="c-text--loud">
+                        {comment.authorName}
+                      </div>
+                      <div className="u-letter-box--small">
+                        <span className="c-badge c-badge--warning">Оценка: {comment.rate}</span>
+                      </div>
+                      <div className="c-text--quiet">
+                        {comment.comment}
+                      </div>
                     </div>
-                    <div className="u-letter-box--small">
-                      <span className="c-badge c-badge--warning">Оценка: {comment.rate}</span>
-                    </div>
-                    <div className="c-text--quiet">
-                      {comment.comment}
-                    </div>
-                  </div>
-                );
-              })
-            }
+                  );
+                })
+              }
+            </div>
           </div>
         }
       </main>

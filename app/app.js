@@ -67,9 +67,6 @@ const history = syncHistoryWithStore(browserHistory, store, {
 // Set up the router, wrapping all Routes in the App component
 const rootRoute = {
   component: App,
-  onEnter: (nextState, replace) => {
-    console.log(nextState, replace);
-  },
   childRoutes: createRoutes(store),
 };
 
