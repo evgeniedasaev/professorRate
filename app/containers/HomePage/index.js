@@ -8,7 +8,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 import { loadBestProfessors } from './actions';
 import { makeProfessors } from './selectors';
 
@@ -25,7 +24,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   }
 
   render() {
-    const { loading, error, professors } = this.props;
+    const { professors, user } = this.props;
 
     return (
       <main className="o-container o-container--large u-pillar-box--small">
@@ -34,7 +33,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           professors &&
           professors.map((professor, i) => {
             return (
-              <ProfessorPreview key={i} item={professor} />
+              <ProfessorPreview key={i} item={professor} showRate={user} />
             );
           })
         }
@@ -44,11 +43,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 }
 
 HomePage.propTypes = {
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
   professors: React.PropTypes.oneOfType([
     React.PropTypes.array,
     React.PropTypes.bool,
@@ -63,8 +57,6 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
   professors: makeProfessors(),
 });
 

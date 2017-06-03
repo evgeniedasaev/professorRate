@@ -4,7 +4,7 @@
 
 import { take, call, put, select, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { CREATE_USER } from './constants';
+import { CHECK_USER } from './constants';
 import { userLoaded, userLoadingError } from './actions';
 
 import client from '../../utils/jsonApiClient';
@@ -14,16 +14,23 @@ import Guid from 'guid';
 /**
  * Github repos request/response handler
  */
-export function* createUser(action) {
-    const { userData } = action;
-    userData.id = Guid.raw();
+export function* logIn(action) {
+    const { login, password } = action;
 
     try {
-        const resource = yield call([client, client.create], 'user', userData);
-        resource.sync();
+        const resource = yield call([client, client.find], 'user', {
+            filter: {
+                login,
+                password
+            }
+        });
 
-        const user = resource.toJSONTree();
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        let user = false;
+        if (resource.length) {
+            user = resource[0].toJSONTree();
+        } else {
+            throw "Пользователь с таким логином или паролем не найден!";
+        }
 
         yield put(userLoaded(user));
     } catch (error) {
@@ -36,10 +43,10 @@ export function* createUser(action) {
  * Root saga manages watcher lifecycle
  */
 export function* apiData() {
-    // Watches for CREATE_USER actions and calls createUser when one comes in.
+    // Watches for CHECK_USER actions and calls logIn when one comes in.
     // By using `takeLatest` only the result of the latest API call is applied.
     // It returns task descriptor (just like fork) so we can continue execution
-    const watcher = yield takeLatest(CREATE_USER, createUser);
+    const watcher = yield takeLatest(CHECK_USER, logIn);
 
     // Suspend execution until location changes
     yield take(LOCATION_CHANGE);

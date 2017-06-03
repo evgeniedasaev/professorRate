@@ -88,14 +88,33 @@ export default function createRoutes(store) {
       name: 'signin',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          import('containers/SigninPage/reducer'),
           import('containers/SigninPage/sagas'),
           import('containers/SigninPage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
+        importModules.then(([sagas, component]) => {
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/LoginPage/sagas'),
+          import('containers/LoginPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([sagas, component]) => {
           injectSagas(sagas.default);
 
           renderRoute(component);

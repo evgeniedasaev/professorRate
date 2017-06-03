@@ -8,7 +8,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 import { loadSearchedProfessors } from './actions';
 import { getQtail, makeProfessors } from './selectors';
 
@@ -29,7 +28,7 @@ export class SearchPage extends React.PureComponent { // eslint-disable-line rea
   }
 
   render() {
-    const { loading, error, qtail, professors } = this.props;
+    const { qtail, professors, user } = this.props;
 
     return (
       <main className="o-container o-container--large u-pillar-box--small">
@@ -38,7 +37,7 @@ export class SearchPage extends React.PureComponent { // eslint-disable-line rea
           professors &&
           professors.map((professor, i) => {
             return (
-              <ProfessorPreview key={i} item={professor} />
+              <ProfessorPreview key={i} item={professor} showRate={user} />
             );
           })
         }
@@ -48,11 +47,6 @@ export class SearchPage extends React.PureComponent { // eslint-disable-line rea
 }
 
 SearchPage.propTypes = {
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
   professors: React.PropTypes.oneOfType([
     React.PropTypes.array,
     React.PropTypes.bool,
@@ -67,8 +61,6 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
   qtail: getQtail(),
   professors: makeProfessors(),
 });

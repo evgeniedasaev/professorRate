@@ -8,7 +8,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 import { loadProfessor } from './actions';
 import { getPrefessorId, makeProfessor } from './selectors';
 
@@ -25,15 +24,15 @@ export class ProfessorPage extends React.PureComponent { // eslint-disable-line 
   }
 
   render() {
-    const { loading, error, professor } = this.props;
-    
+    const { professor, user } = this.props;
+
     return (
       <main className="o-container o-container--large u-pillar-box--small">
         <h2 className="c-heading c-heading--small">{professor.title}</h2>
         
         {
           professor &&
-          <ProfessorPreview item={professor} showTitle={false} showShow={false} />
+          <ProfessorPreview item={professor} showTitle={false} showShow={false} showRate={user} />
         }
         
         {
@@ -69,11 +68,6 @@ export class ProfessorPage extends React.PureComponent { // eslint-disable-line 
 }
 
 ProfessorPage.propTypes = {
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
   professor: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.bool,
@@ -88,8 +82,6 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
   professorId: getPrefessorId(),
   professor: makeProfessor(),
 });

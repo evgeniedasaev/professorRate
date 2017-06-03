@@ -1,5 +1,5 @@
 /*
- * AppConstants
+ * LoginConstants
  * Each action has a corresponding type, which the reducer knows and picks up on.
  * To avoid weird typos between the reducer and the actions, we save them as
  * constants here. We prefix them with 'yourproject/YourComponent' so we avoid
@@ -9,4 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOGOUT = 'professorRate/App/LOGOUT';
+export const CHECK_USER = 'professorRate/Login/CHECK_USER';
+export const CHECK_USER_SUCCESS = 'professorRate/Login/CHECK_USER_SUCCESS';
+export const CHECK_USER_ERROR = 'professorRate/Login/CHECK_USER_ERROR';

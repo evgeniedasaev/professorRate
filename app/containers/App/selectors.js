@@ -8,7 +8,21 @@ const selectGlobal = (state) => state.get('global');
 
 const makeSelectCurrentUser = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('currentUser')
+  (globalState) => {
+    let currentUser = globalState.get('currentUser');
+
+    if (!currentUser) {
+      currentUser = localStorage.getItem('currentUser');
+
+      if (currentUser !== null) {
+        currentUser = JSON.parse(currentUser);
+      } else {
+        currentUser = false;
+      }
+    }
+
+    return currentUser;
+  }
 );
 
 const makeSelectLoading = () => createSelector(

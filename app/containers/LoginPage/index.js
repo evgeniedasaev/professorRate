@@ -1,5 +1,5 @@
 /*
- * SigninPage
+ * LoginPage
  *
  * This is the first thing users see of our App, at the '/' route
  */
@@ -8,13 +8,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import { createUser } from './actions';
+import { logIn } from './actions';
 
 import Form from './Form';
 
-export class SigninPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-    onSubmit = (userData) => {
-        this.props.createUser(userData);
+export class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+    onSubmit = (login, password) => {
+        this.props.logIn(login, password);
     }
 
     componentDidMount() {
@@ -27,22 +27,22 @@ export class SigninPage extends React.PureComponent { // eslint-disable-line rea
     render() {
         return (
             <main className="o-container o-container--large u-pillar-box--small">
-                <h2 className="c-heading c-heading--small">Регистрация</h2>
+                <h2 className="c-heading c-heading--small">Войти</h2>
                 <Form onSubmit={this.onSubmit} />
             </main>
         );
     }
 }
 
-SigninPage.propTypes = {
-    createUser: React.PropTypes.func,
+LoginPage.propTypes = {
+    logIn: React.PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
     return {
-        createUser: (userData) => dispatch(createUser(userData)),
+        logIn: (login, password) => dispatch(logIn(login, password)),
     };
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(null, mapDispatchToProps)(SigninPage);
+export default connect(null, mapDispatchToProps)(LoginPage);
