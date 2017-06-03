@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 
+const previewImg = require.context('!file-loader?name=[name].[ext]!../../../assets/user', true);
+
 function ProfessorPreview(props) {
     const { item, showTitle, showRate, showShow } = props;
 
@@ -10,7 +12,7 @@ function ProfessorPreview(props) {
                 {
                     typeof item.photo !== 'indefined' &&
                     <div className="o-grid__cell o-grid__cell--width-40 u-centered">
-                        <img className="o-image" src={item.photo} />
+                        <img className="o-image" src={'/' + item.photo} alt={item.title} />
                     </div>
                 }
                 <div className="o-grid__cell o-grid__cell--width-60">
