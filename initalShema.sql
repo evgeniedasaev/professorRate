@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 04 2017 г., 22:22
+-- Время создания: Июн 04 2017 г., 22:57
 -- Версия сервера: 5.7.18-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.18-1+deb.sury.org~xenial+1
 
@@ -32,10 +32,10 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` int(10) UNSIGNED NOT NULL,
-  `rate` int(1) UNSIGNED NOT NULL,
+  `rate` int(1) UNSIGNED DEFAULT NULL,
   `comment` text,
-  `userId` int(10) UNSIGNED NOT NULL,
-  `authorId` int(10) UNSIGNED NOT NULL,
+  `userId` int(10) UNSIGNED DEFAULT NULL,
+  `authorId` int(10) UNSIGNED DEFAULT NULL,
   `isPublished` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -83,11 +83,11 @@ CREATE TABLE `migrations` (
 DROP TABLE IF EXISTS `user-comments`;
 CREATE TABLE `user-comments` (
   `id` int(11) NOT NULL,
-  `userId` varchar(256) NOT NULL,
-  `commentId` varchar(256) NOT NULL,
-  `uid` varchar(256) NOT NULL,
-  `type` varchar(256) NOT NULL,
-  `meta` varchar(256) NOT NULL
+  `userId` varchar(256) DEFAULT NULL,
+  `commentId` varchar(256) DEFAULT NULL,
+  `uid` varchar(256) DEFAULT NULL,
+  `type` varchar(256) DEFAULT NULL,
+  `meta` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -99,11 +99,11 @@ CREATE TABLE `user-comments` (
 DROP TABLE IF EXISTS `user-courses`;
 CREATE TABLE `user-courses` (
   `id` int(10) UNSIGNED NOT NULL,
-  `userId` int(10) UNSIGNED NOT NULL,
-  `courseId` int(10) UNSIGNED NOT NULL,
-  `uid` varchar(256) NOT NULL,
-  `type` varchar(256) NOT NULL,
-  `meta` varchar(256) NOT NULL
+  `userId` int(10) UNSIGNED DEFAULT NULL,
+  `courseId` int(10) UNSIGNED DEFAULT NULL,
+  `uid` varchar(256) DEFAULT NULL,
+  `type` varchar(256) DEFAULT NULL,
+  `meta` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -123,11 +123,11 @@ INSERT INTO `user-courses` (`id`, `userId`, `courseId`, `uid`, `type`, `meta`) V
 DROP TABLE IF EXISTS `user-createdComments`;
 CREATE TABLE `user-createdComments` (
   `id` int(11) NOT NULL,
-  `userId` varchar(256) NOT NULL,
-  `commentId` varchar(256) NOT NULL,
-  `uid` varchar(256) NOT NULL,
-  `meta` varchar(256) NOT NULL,
-  `type` varchar(256) NOT NULL
+  `userId` varchar(256) DEFAULT NULL,
+  `commentId` varchar(256) DEFAULT NULL,
+  `uid` varchar(256) DEFAULT NULL,
+  `meta` varchar(256) DEFAULT NULL,
+  `type` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -139,19 +139,19 @@ CREATE TABLE `user-createdComments` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `userType` int(1) UNSIGNED NOT NULL,
+  `userType` int(1) UNSIGNED DEFAULT NULL,
   `type` varchar(256) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `login` varchar(100) DEFAULT NULL,
   `passwordCrypted` varchar(255) DEFAULT NULL,
-  `yearStart` int(4) UNSIGNED NOT NULL,
-  `yearFinish` int(4) UNSIGNED NOT NULL,
-  `rate` float UNSIGNED NOT NULL,
+  `yearStart` int(4) UNSIGNED DEFAULT NULL,
+  `yearFinish` int(4) UNSIGNED DEFAULT NULL,
+  `rate` float UNSIGNED DEFAULT NULL,
   `isPublished` tinyint(1) DEFAULT NULL,
-  `meta` varchar(256) NOT NULL,
-  `password` varchar(256) NOT NULL,
-  `photo` varchar(256) NOT NULL,
-  `about` text NOT NULL
+  `meta` varchar(256) DEFAULT NULL,
+  `password` varchar(256) DEFAULT NULL,
+  `photo` varchar(256) DEFAULT NULL,
+  `about` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
