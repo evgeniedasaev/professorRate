@@ -5,7 +5,8 @@ const logger = require('./logger');
 
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
-const isDev = process.env.NODE_ENV !== 'production';
+const env = process.env.NODE_ENV || 'development';
+const isDev = env !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const path = require('path')
 const resolve = path.resolve;
@@ -68,7 +69,7 @@ jsonApi.setConfig({
         }
     },
     protocol: 'http',
-    hostname: 'whereismyprofessor.djekoff.ru',
+    hostname: customHost,
     port: 16006,
     base: 'rest',
     meta: {
