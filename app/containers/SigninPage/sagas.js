@@ -23,7 +23,7 @@ export function* createUser(action) {
         resource.sync();
 
         const user = resource.toJSONTree();
-        sessionStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('currentUser', JSON.stringify(user));
 
         yield put(userLoaded(user));
     } catch (error) {
