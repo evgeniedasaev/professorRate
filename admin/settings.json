@@ -55,7 +55,7 @@
                 },
                 "type": "int(1) unsigned",
                 "allowNull": true,
-                "defaultValue": 1,
+                "defaultValue": "1",
                 "listview": {
                     "show": true
                 },
@@ -81,13 +81,13 @@
             },
             {
                 "name": "password",
-                "verbose": "password",
+                "verbose": "Пароль для входа",
                 "control": {
                     "text": true
                 },
                 "type": "varchar(256)",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "12345",
                 "listview": {
                     "show": false
                 },
