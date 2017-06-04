@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 04 2017 г., 22:57
+-- Время создания: Июн 04 2017 г., 23:07
 -- Версия сервера: 5.7.18-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.18-1+deb.sury.org~xenial+1
 
@@ -140,7 +140,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `userType` int(1) UNSIGNED DEFAULT NULL,
-  `type` varchar(256) NOT NULL,
+  `type` varchar(256) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `login` varchar(100) DEFAULT NULL,
   `passwordCrypted` varchar(255) DEFAULT NULL,
@@ -184,9 +184,21 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `user-comments`
+--
+ALTER TABLE `user-comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `user-courses`
 --
 ALTER TABLE `user-courses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `user-createdComments`
+--
+ALTER TABLE `user-createdComments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -216,10 +228,20 @@ ALTER TABLE `courses`
 ALTER TABLE `migrations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT для таблицы `user-comments`
+--
+ALTER TABLE `user-comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT для таблицы `user-courses`
 --
 ALTER TABLE `user-courses`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT для таблицы `user-createdComments`
+--
+ALTER TABLE `user-createdComments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
