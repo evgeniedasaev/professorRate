@@ -179,7 +179,8 @@
       "jsonapi-store-relationaldb",
       "jsonapi-store-mongodb",
       "font-awesome",
-      "guid"
+      "guid",
+      "express-admin"
     ],
     "include": [
       "core-js",
@@ -221,6 +222,7 @@
     "compression": "1.6.2",
     "cross-env": "3.1.3",
     "express": "4.14.0",
+    "express-admin": "^1.3.0",
     "font-awesome": "^4.7.0",
     "fontfaceobserver": "2.0.7",
     "guid": "^0.0.12",

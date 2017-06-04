@@ -1,8 +1,9 @@
-const MongoStore = require("jsonapi-store-mongodb");
+const ENV = process.env.NODE_ENV || "dev";
 
-const store = new MongoStore({
-    url: "mongodb://localhost:27017/jackenstein_rateProfessor",
-});
+const RelationalDbStore = require("jsonapi-store-relationaldb");
+const databaseConfig = require('../database.json');
+
+const store = new RelationalDbStore(databaseConfig[ENV]);
 
 // store.initialise = () => {
 //     console.log(arguments);

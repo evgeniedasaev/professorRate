@@ -1,0 +1,16 @@
+{
+    "mysql": {
+        "database": "jackenstein_rateProfessor",
+        "user": "root",
+        "password": "djxj9TUY"
+    },
+    "server": {
+        "port": 8000
+    },
+    "app": {
+        "layouts": true,
+        "themes": true,
+        "languages": true,
+        "upload": "./build"
+    }
+}

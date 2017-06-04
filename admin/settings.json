@@ -1,0 +1,910 @@
+{
+    "users": {
+        "slug": "users",
+        "table": {
+            "name": "users",
+            "pk": "id",
+            "verbose": "Преподаватели и студенты"
+        },
+        "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "int(10) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            },
+            {
+                "name": "title",
+                "verbose": "Фамилия Имя Отчество",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(255)",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "userType",
+                "verbose": "Тип пользователя",
+                "control": {
+                    "select": true,
+                    "options": [
+                        {
+                            "1": "Профессор"
+                        },
+                        {
+                            "2": "Студент"
+                        }
+                    ]
+                },
+                "type": "int(1) unsigned",
+                "allowNull": false,
+                "defaultValue": 1,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "login",
+                "verbose": "Логин",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(100)",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "password",
+                "verbose": "password",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "yearStart",
+                "verbose": "Начало работы/учебы",
+                "control": {
+                    "year": true
+                },
+                "type": "int(4) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "yearFinish",
+                "verbose": "Конец работы/учебы",
+                "control": {
+                    "year": true
+                },
+                "type": "int(4) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "rate",
+                "verbose": "Оценка",
+                "control": {
+                    "text": true
+                },
+                "type": "float unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "photo",
+                "verbose": "Фото",
+                "control": {
+                    "file": true
+                },
+                "type": "varchar(256)",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "about",
+                "verbose": "О пользователе",
+                "control": {
+                    "textarea": true
+                },
+                "type": "text",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "verbose": "Курсы",
+                "name": "user-courses",
+                "control": {
+                    "select": true,
+                    "multiple": true
+                },
+                "type": "int(11)",
+                "allowNull": true,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": true
+                },
+                "manyToMany": {
+                    "link": {
+                        "table": "user-courses",
+                        "parentPk": "userId",
+                        "childPk": "courseId"
+                    },
+                    "ref": {
+                        "table": "courses",
+                        "pk": "id",
+                        "columns": [
+                            "title"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "isPublished",
+                "verbose": "Активный пользователя",
+                "control": {
+                    "radio": true,
+                    "options": [
+                        "Да",
+                        "Нет"
+                    ]
+                },
+                "type": "tinyint(1)",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "type",
+                "verbose": "type",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            },
+            {
+                "name": "passwordCrypted",
+                "verbose": "passwordCrypted",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(255)",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            },
+            {
+                "name": "meta",
+                "verbose": "meta",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            }
+        ],
+        "mainview": {
+            "show": true
+        },
+        "listview": {
+            "order": {},
+            "page": 25
+        },
+        "editview": {
+            "readonly": false
+        }
+    },
+    "courses": {
+        "slug": "courses",
+        "table": {
+            "name": "courses",
+            "pk": "id",
+            "verbose": "Курсы"
+        },
+        "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "int(10) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            },
+            {
+                "name": "title",
+                "verbose": "Название курса",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(255)",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "isPublished",
+                "verbose": "Курс виден на сайте",
+                "control": {
+                    "radio": true,
+                    "options": [
+                        "Да",
+                        "Нет"
+                    ]
+                },
+                "type": "tinyint(1)",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            }
+        ],
+        "mainview": {
+            "show": true
+        },
+        "listview": {
+            "order": {},
+            "page": 25
+        },
+        "editview": {
+            "readonly": false
+        }
+    },
+    "comments": {
+        "slug": "comments",
+        "table": {
+            "name": "comments",
+            "pk": "id",
+            "verbose": "Комментарии"
+        },
+        "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "int(10) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            },
+            {
+                "name": "comment",
+                "verbose": "Комментарий",
+                "control": {
+                    "textarea": true
+                },
+                "type": "text",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "rate",
+                "verbose": "Оценка",
+                "control": {
+                    "number": true
+                },
+                "type": "int(1) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "userId",
+                "verbose": "Адресат",
+                "control": {
+                    "select": true
+                },
+                "type": "int(10) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                },
+                "oneToMany": {
+                    "table": "users",
+                    "pk": "id",
+                    "columns": [
+                        "title"
+                    ]
+                }
+            },
+            {
+                "name": "authorId",
+                "verbose": "Автор",
+                "control": {
+                    "select": true
+                },
+                "type": "int(10) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                },
+                "oneToMany": {
+                    "table": "users",
+                    "pk": "id",
+                    "columns": [
+                        "title"
+                    ]
+                }
+            },
+            {
+                "name": "isPublished",
+                "verbose": "Комментарий виден на сайте",
+                "control": {
+                    "radio": true,
+                    "options": [
+                        "Да",
+                        "Нет"
+                    ]
+                },
+                "type": "tinyint(1)",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            }
+        ],
+        "mainview": {
+            "show": true
+        },
+        "listview": {
+            "order": {},
+            "page": 25
+        },
+        "editview": {
+            "readonly": false
+        }
+    },
+    "migrations": {
+        "slug": "migrations",
+        "table": {
+            "name": "migrations",
+            "pk": "id",
+            "verbose": "migrations"
+        },
+        "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "int(11)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "name",
+                "verbose": "name",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(255)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "run_on",
+                "verbose": "run_on",
+                "control": {
+                    "text": true
+                },
+                "type": "datetime",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            }
+        ],
+        "mainview": {
+            "show": false
+        },
+        "listview": {
+            "order": {},
+            "page": 25
+        },
+        "editview": {
+            "readonly": false
+        }
+    },
+    "user-comments": {
+        "slug": "user-comments",
+        "table": {
+            "name": "user-comments",
+            "pk": "",
+            "verbose": "user-comments"
+        },
+        "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "int(11)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "userId",
+                "verbose": "userId",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "commentId",
+                "verbose": "commentId",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "uid",
+                "verbose": "uid",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "type",
+                "verbose": "type",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "meta",
+                "verbose": "meta",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            }
+        ],
+        "mainview": {
+            "show": false
+        },
+        "listview": {
+            "order": {},
+            "page": 25
+        },
+        "editview": {
+            "readonly": false
+        }
+    },
+    "user-courses": {
+        "slug": "user-courses",
+        "table": {
+            "name": "user-courses",
+            "pk": "id",
+            "verbose": "user-courses"
+        },
+        "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "int(10) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "userId",
+                "verbose": "userId",
+                "control": {
+                    "text": true
+                },
+                "type": "int(10) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "courseId",
+                "verbose": "courseId",
+                "control": {
+                    "text": true
+                },
+                "type": "int(10) unsigned",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "uid",
+                "verbose": "uid",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "type",
+                "verbose": "type",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "meta",
+                "verbose": "meta",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            }
+        ],
+        "mainview": {
+            "show": false
+        },
+        "listview": {
+            "order": {},
+            "page": 25
+        },
+        "editview": {
+            "readonly": false
+        }
+    },
+    "user-createdComments": {
+        "slug": "user-createdComments",
+        "table": {
+            "name": "user-createdComments",
+            "pk": "",
+            "verbose": "user-createdComments"
+        },
+        "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "int(11)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "userId",
+                "verbose": "userId",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "commentId",
+                "verbose": "commentId",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "uid",
+                "verbose": "uid",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "meta",
+                "verbose": "meta",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "type",
+                "verbose": "type",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            }
+        ],
+        "mainview": {
+            "show": false
+        },
+        "listview": {
+            "order": {},
+            "page": 25
+        },
+        "editview": {
+            "readonly": false
+        }
+    }
+}
