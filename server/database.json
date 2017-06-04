@@ -12,6 +12,11 @@
     "production": {
         "driver": "mysql",
         "user": "root",
-        "password": "root"
+        "dialect": "mysql",
+        "username": "root",
+        "password": "djxj9TUY",
+        "host": "localhost",
+        "database": "jackenstein_rateProfessor",
+        "multipleStatements": true
     }
 }
