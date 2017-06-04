@@ -57,9 +57,12 @@ export class ProfessorPage extends React.PureComponent { // eslint-disable-line 
                         <div className="c-text--loud">
                           {comment.authorName}
                         </div>
-                        <div className="u-letter-box--small">
-                          <span className="c-badge c-badge--warning">Оценка: {comment.rate}</span>
-                        </div>
+                        {
+                          comment.rate &&
+                          <div className="u-letter-box--small">
+                            <span className="c-badge c-badge--warning">Оценка: {comment.rate}</span>
+                          </div>
+                        }
                         <div className="c-text--quiet">
                           {comment.comment}
                         </div>
@@ -67,8 +70,7 @@ export class ProfessorPage extends React.PureComponent { // eslint-disable-line 
                     );
                   })
                 }
-              </div>
-            
+              </div>            
           }
         </div>
       </div>

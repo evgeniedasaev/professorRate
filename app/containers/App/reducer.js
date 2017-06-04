@@ -18,6 +18,7 @@ import * as actionsProfessor from '../ProfessorPage/constants';
 import * as actionsSearch from '../SearchPage/constants';
 import * as actionsSignin from '../SigninPage/constants';
 import * as actionsLogin from '../LoginPage/constants';
+import * as actionsRate from '../RatePage/constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -33,6 +34,7 @@ function appReducer(state = initialState, action) {
     case actionsSearch.LOAD_SEARCHED_PROFESSORS:
     case actionsSignin.CREATE_USER:
     case actionsLogin.CHECK_USER:
+    case actionsRate.SEND_RATE:
 
       return state
         .set('loading', true)
@@ -41,6 +43,7 @@ function appReducer(state = initialState, action) {
     case actionsHome.LOAD_BEST_PROFESSORS_SUCCESS:
     case actionsProfessor.LOAD_PROFESSOR_SUCCESS:
     case actionsSearch.LOAD_SEARCHED_PROFESSORS_SUCCESS:
+    case actionsRate.SEND_RATE_SUCCESS:
 
       return state
         .set('loading', false);
@@ -57,6 +60,7 @@ function appReducer(state = initialState, action) {
     case actionsSearch.LOAD_SEARCHED_PROFESSORS_ERROR:
     case actionsSignin.CREATE_USER_ERROR:
     case actionsLogin.CHECK_USER_ERROR:
+    case actionsRate.SEND_RATE_ERROR:
 
       return state
         .set('error', action.error)

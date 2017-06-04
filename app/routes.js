@@ -84,6 +84,28 @@ export default function createRoutes(store) {
       }
     },
     {
+      path: '/rate/:id',
+      name: 'rate',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/ProfessorPage/reducer'),
+          import('containers/RatePage/sagas'),
+          import('containers/RatePage'),
+        ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([reducer, sagas, component]) => {
+            injectReducer('professor', reducer.default);
+            injectSagas(sagas.default);
+
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+      }
+    },    
+    {
       path: '/signin',
       name: 'signin',
       getComponent(nextState, cb) {

@@ -22,7 +22,10 @@ function ProfessorPreview(props) {
                             {item.title}
                         </h3>
                     }
-                    <span className="c-badge c-badge--warning">Оценка: {item.rate}</span>
+                    {
+                        item.rate &&
+                        <span className="c-badge c-badge--warning">Оценка: {item.rate}</span>
+                    }
                     <p className="c-paragraph">{item.about}</p>
                     {
                         item.courses.length && 
@@ -43,7 +46,9 @@ function ProfessorPreview(props) {
                     <div className="u-letter-box--medium c-input-group">
                         {
                             showRate &&
-                            <a className="c-button c-button--success u-large" href="#">Оценить</a>
+                            <Link className="c-button c-button--success u-large" to={'/rate/' + item.id}>
+                                Оценить
+                            </Link>
                         }
                         {
                             showShow &&

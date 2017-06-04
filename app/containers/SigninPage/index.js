@@ -17,8 +17,9 @@ export class SigninPage extends React.PureComponent { // eslint-disable-line rea
         this.props.createUser(userData);
     }
 
-    componentDidMount() {
-        const { user } = this.props;
+    componentWillUpdate(nextProps, nextState) {
+        const { user } = nextProps;
+
         if (user) {
             browserHistory.push('/');
         }
