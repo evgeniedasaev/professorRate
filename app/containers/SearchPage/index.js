@@ -31,8 +31,8 @@ export class SearchPage extends React.PureComponent { // eslint-disable-line rea
     const { qtail, professors, user } = this.props;
 
     return (
-      <main className="o-container o-container--large u-pillar-box--small">
-        <h2 className="c-heading c-heading--small">Все преподаватели по запросу "{qtail}"</h2>
+      <div>
+        <h2 className="c-heading c-heading--small u-letter-box--none">Все преподаватели по запросу "{qtail}"</h2>
         {
           professors &&
           professors.map((professor, i) => {
@@ -41,7 +41,7 @@ export class SearchPage extends React.PureComponent { // eslint-disable-line rea
             );
           })
         }
-      </main>
+      </div>
     );
   }
 }

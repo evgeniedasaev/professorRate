@@ -27,44 +27,51 @@ export class ProfessorPage extends React.PureComponent { // eslint-disable-line 
     const { professor, user } = this.props;
 
     return (
-      <main className="o-container o-container--large u-pillar-box--small">
-        <h2 className="c-heading c-heading--small">{professor.title}</h2>
+      <div>
+        <h2 className="c-heading c-heading--small u-letter-box--none">{professor.title}</h2>
         
         {
           professor &&
           <ProfessorPreview item={professor} showTitle={false} showShow={false} showRate={user} />
         }
         
-        {
-          typeof professor.comments !== 'undefined' &&
-          <h3 className="c-heading c-heading--small">Оценки от студентов</h3>
-        }
-        
-        {
-          typeof professor.comments !== 'undefined' &&
-          <div className="u-letter-box--medium">
-            <div className="c-card">
-              {
-                professor.comments.map((comment, i) => {
-                  return (
-                    <div key={i} className="c-card__item u-window-box--large">
-                      <div className="c-text--loud">
-                        {comment.authorName}
+        <h3 className="c-heading c-heading--small">Оценки от студентов</h3>
+        <div className="u-letter-box--medium">
+          {
+            (
+              typeof professor.comments === 'undefined' ||
+              professor.comments.length === 0
+            ) &&
+            <span>Об этом преподователи еще не успели оставить отзыв.</span>
+          }
+          
+          {
+            typeof professor.comments !== 'undefined' &&
+            professor.comments.length > 0 &&
+            
+              <div className="c-card">
+                {
+                  professor.comments.map((comment, i) => {
+                    return (
+                      <div key={i} className="c-card__item u-window-box--large">
+                        <div className="c-text--loud">
+                          {comment.authorName}
+                        </div>
+                        <div className="u-letter-box--small">
+                          <span className="c-badge c-badge--warning">Оценка: {comment.rate}</span>
+                        </div>
+                        <div className="c-text--quiet">
+                          {comment.comment}
+                        </div>
                       </div>
-                      <div className="u-letter-box--small">
-                        <span className="c-badge c-badge--warning">Оценка: {comment.rate}</span>
-                      </div>
-                      <div className="c-text--quiet">
-                        {comment.comment}
-                      </div>
-                    </div>
-                  );
-                })
-              }
-            </div>
-          </div>
-        }
-      </main>
+                    );
+                  })
+                }
+              </div>
+            
+          }
+        </div>
+      </div>
     );
   }
 }

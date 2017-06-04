@@ -14,6 +14,7 @@ import { createStructuredSelector } from 'reselect';
 
 import Header from 'components/Header';
 import withProgressBar from 'components/ProgressBar';
+import Errors from 'components/Errors';
 
 import { makeSelectCurrentUser, makeSelectLoading, makeSelectError } from './selectors';
 import { logout } from './actions';
@@ -23,7 +24,7 @@ export class App extends React.PureComponent { // eslint-disable-line react/pref
     const { children, loading, error, user, logout } = this.props;
     const childrenWithProps = React.Children.map(children,
       (child) => React.cloneElement(child, {
-        user: user
+        user,
       })
     );
 
@@ -37,7 +38,10 @@ export class App extends React.PureComponent { // eslint-disable-line react/pref
           ]}
         />
         <Header user={user} logout={logout} />
-        {childrenWithProps}
+        <main className="o-container o-container--large u-pillar-box--small u-letter-box--medium">
+          <Errors errors={error} />
+          {childrenWithProps}
+        </main>
       </div>
     );
   }

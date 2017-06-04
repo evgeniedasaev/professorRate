@@ -27,10 +27,10 @@ export class LoginPage extends React.PureComponent { // eslint-disable-line reac
 
     render() {
         return (
-            <main className="o-container o-container--large u-pillar-box--small">
-                <h2 className="c-heading c-heading--small">Войти</h2>
+            <div>
+                <h2 className="c-heading c-heading--small u-letter-box--none">Войти</h2>
                 <Form onSubmit={this.onSubmit} />
-            </main>
+            </div>
         );
     }
 }

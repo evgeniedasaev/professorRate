@@ -26,10 +26,10 @@ export class SigninPage extends React.PureComponent { // eslint-disable-line rea
 
     render() {
         return (
-            <main className="o-container o-container--large u-pillar-box--small">
-                <h2 className="c-heading c-heading--small">Регистрация</h2>
+            <div>
+                <h2 className="c-heading c-heading--small u-letter-box--none">Регистрация</h2>
                 <Form onSubmit={this.onSubmit} />
-            </main>
+            </div>
         );
     }
 }

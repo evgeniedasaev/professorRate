@@ -27,8 +27,8 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     const { professors, user } = this.props;
 
     return (
-      <main className="o-container o-container--large u-pillar-box--small">
-        <h2 className="c-heading c-heading--small">Лучшие профессора</h2>
+      <div>
+        <h2 className="c-heading c-heading--small u-letter-box--none">Лучшие профессора</h2>
         {
           professors &&
           professors.map((professor, i) => {
@@ -37,7 +37,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             );
           })
         }
-      </main>
+      </div>
     );
   }
 }
