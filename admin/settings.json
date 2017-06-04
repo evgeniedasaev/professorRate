@@ -233,7 +233,7 @@
                 },
                 "type": "varchar(256)",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "user",
                 "listview": {
                     "show": false
                 },
@@ -249,7 +249,7 @@
                 },
                 "type": "varchar(255)",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "12345",
                 "listview": {
                     "show": false
                 },
@@ -265,7 +265,7 @@
                 },
                 "type": "varchar(256)",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "",
                 "listview": {
                     "show": false
                 },
