@@ -177,6 +177,7 @@
       "express",
       "jsonapi-server",
       "jsonapi-store-relationaldb",
+      "jsonapi-store-mongodb",
       "font-awesome",
       "guid"
     ],
@@ -229,6 +230,7 @@
     "ip": "1.1.4",
     "jsonapi-client": "holidayextras/jsonapi-client",
     "jsonapi-server": "^2.3.2",
+    "jsonapi-store-mongodb": "^1.5.2",
     "jsonapi-store-relationaldb": "^1.2.8",
     "lodash": "4.17.2",
     "minimist": "1.2.0",

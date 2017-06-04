@@ -1,12 +1,12 @@
 const jsonApi = require('jsonapi-server')
 
-const relationalHandler = require('../handlers/relationalHandler.js')
+const storeHandler = require('../handlers/storeHandler');
 
 jsonApi.define({
     namespace: 'json:api',
     resource: 'user',
     description: 'User endpoint.',
-    handlers: new jsonApi.ChainHandler().chain(relationalHandler).chain(new jsonApi.MemoryHandler()),
+    handlers: storeHandler,
     searchParams: {},
     attributes: {
         userType: jsonApi.Joi.number().min(1).max(2).precision(0)

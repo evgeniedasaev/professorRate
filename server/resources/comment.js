@@ -1,12 +1,12 @@
 const jsonApi = require('jsonapi-server')
 
-const relationalHandler = require('../handlers/relationalHandler.js')
+const storeHandler = require('../handlers/storeHandler');
 
 jsonApi.define({
     namespace: 'json:api',
     resource: 'comment',
     description: 'Comment endpoint.',
-    handlers: new jsonApi.ChainHandler().chain(relationalHandler).chain(new jsonApi.MemoryHandler()),
+    handlers: storeHandler,
     searchParams: {},
     attributes: {
         rate: jsonApi.Joi.number().min(1).max(5).precision(0)
