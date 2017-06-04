@@ -16,15 +16,16 @@ import Header from 'components/Header';
 import withProgressBar from 'components/ProgressBar';
 import Errors from 'components/Errors';
 
-import { makeSelectCurrentUser, makeSelectLoading, makeSelectError } from './selectors';
+import { makeSelectCurrentUser, makeSelectLoading, makeSelectError, makeSelectRedirect } from './selectors';
 import { logout } from './actions';
 
 export class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { children, loading, error, user, logout } = this.props;
+    const { children, loading, error, user, logout, shouldRedirect } = this.props;
     const childrenWithProps = React.Children.map(children,
       (child) => React.cloneElement(child, {
         user,
+        shouldRedirect,
       })
     );
 
@@ -58,6 +59,7 @@ App.propTypes = {
     React.PropTypes.object,
     React.PropTypes.bool,
   ]),
+  shouldRedirect: React.PropTypes.bool,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -74,6 +76,7 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   error: makeSelectError(),
   user: makeSelectCurrentUser(),
+  shouldRedirect: makeSelectRedirect(),
 });
 
 // Wrap the component to inject dispatch and state into it

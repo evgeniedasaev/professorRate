@@ -25,6 +25,11 @@ const makeSelectCurrentUser = () => createSelector(
   }
 );
 
+const makeSelectRedirect = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.get('shouldRedirect')
+);
+
 const makeSelectLoading = () => createSelector(
   selectGlobal,
   (globalState) => globalState.get('loading')
@@ -54,6 +59,7 @@ const makeSelectLocationState = () => {
 export {
   selectGlobal,
   makeSelectCurrentUser,
+  makeSelectRedirect,
   makeSelectLoading,
   makeSelectError,
   makeSelectLocationState,

@@ -23,10 +23,16 @@ export class RatePage extends React.PureComponent { // eslint-disable-line react
     }
 
     componentWillUpdate(nextProps, nextState) {
-        const { professor } = nextProps;
+        const { user } = nextProps;
 
-        if (professor) {
-            browserHistory.push('/rate/' + professor.id);
+        if (!user) {
+            browserHistory.push('/');
+        }
+
+        const { professor, shouldRedirect } = nextProps;
+
+        if (shouldRedirect) {
+            browserHistory.push('/professor/' + professor.id);
         }
     }
 

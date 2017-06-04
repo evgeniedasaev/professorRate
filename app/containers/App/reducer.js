@@ -12,6 +12,8 @@
 
 import { fromJS } from 'immutable';
 
+import { LOCATION_CHANGE } from 'react-router-redux';
+
 import * as actionsApp from './constants';
 import * as actionsHome from '../HomePage/constants';
 import * as actionsProfessor from '../ProfessorPage/constants';
@@ -24,11 +26,17 @@ import * as actionsRate from '../RatePage/constants';
 const initialState = fromJS({
   loading: false,
   error: false,
+  shouldRedirect: false,
   currentUser: false,
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case LOCATION_CHANGE:
+
+      return state
+        .set('shouldRedirect', false);
+
     case actionsHome.LOAD_BEST_PROFESSORS:
     case actionsProfessor.LOAD_PROFESSOR:
     case actionsSearch.LOAD_SEARCHED_PROFESSORS:
@@ -43,10 +51,15 @@ function appReducer(state = initialState, action) {
     case actionsHome.LOAD_BEST_PROFESSORS_SUCCESS:
     case actionsProfessor.LOAD_PROFESSOR_SUCCESS:
     case actionsSearch.LOAD_SEARCHED_PROFESSORS_SUCCESS:
-    case actionsRate.SEND_RATE_SUCCESS:
 
       return state
         .set('loading', false);
+
+    case actionsRate.SEND_RATE_SUCCESS:
+
+      return state
+        .set('loading', false)
+        .set('shouldRedirect', true);
 
     case actionsSignin.CREATE_USER_SUCCESS:
     case actionsLogin.CHECK_USER_SUCCESS:
