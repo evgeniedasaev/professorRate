@@ -525,90 +525,38 @@
             "readonly": false
         }
     },
-    "migrations": {
-        "slug": "migrations",
-        "table": {
-            "name": "migrations",
-            "pk": "id",
-            "verbose": "migrations"
-        },
-        "columns": [
-            {
-                "name": "id",
-                "verbose": "id",
-                "control": {
-                    "text": true
-                },
-                "type": "int(11)",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "name",
-                "verbose": "name",
-                "control": {
-                    "text": true
-                },
-                "type": "varchar(255)",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "run_on",
-                "verbose": "run_on",
-                "control": {
-                    "text": true
-                },
-                "type": "datetime",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            }
-        ],
-        "mainview": {
-            "show": false
-        },
-        "listview": {
-            "order": {},
-            "page": 25
-        },
-        "editview": {
-            "readonly": false
-        }
-    },
     "user-comments": {
         "slug": "user-comments",
         "table": {
             "name": "user-comments",
-            "pk": "",
+            "pk": "uid",
             "verbose": "user-comments"
         },
         "columns": [
+            {
+                "name": "uid",
+                "verbose": "uid",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(50)",
+                "allowNull": false,
+                "defaultValue": "",
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
             {
                 "name": "id",
                 "verbose": "id",
                 "control": {
                     "text": true
                 },
-                "type": "int(11)",
-                "allowNull": true,
+                "type": "varchar(50)",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true
@@ -623,40 +571,8 @@
                 "control": {
                     "text": true
                 },
-                "type": "varchar(256)",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "commentId",
-                "verbose": "commentId",
-                "control": {
-                    "text": true
-                },
-                "type": "varchar(256)",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "uid",
-                "verbose": "uid",
-                "control": {
-                    "text": true
-                },
-                "type": "varchar(256)",
-                "allowNull": true,
+                "type": "varchar(50)",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true
@@ -672,8 +588,8 @@
                     "text": true
                 },
                 "type": "varchar(256)",
-                "allowNull": true,
-                "defaultValue": null,
+                "allowNull": false,
+                "defaultValue": "comment",
                 "listview": {
                     "show": true
                 },
@@ -687,8 +603,8 @@
                 "control": {
                     "text": true
                 },
-                "type": "varchar(256)",
-                "allowNull": true,
+                "type": "text",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true
@@ -713,50 +629,34 @@
         "slug": "user-courses",
         "table": {
             "name": "user-courses",
-            "pk": "id",
+            "pk": "uid",
             "verbose": "user-courses"
         },
         "columns": [
-            {
-                "name": "id",
-                "verbose": "id",
-                "control": {
-                    "text": true
-                },
-                "type": "int(10) unsigned",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "userId",
-                "verbose": "userId",
-                "control": {
-                    "text": true
-                },
-                "type": "int(10) unsigned",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
             {
                 "name": "uid",
                 "verbose": "uid",
                 "control": {
                     "text": true
                 },
-                "type": "varchar(256)",
-                "allowNull": true,
+                "type": "varchar(50)",
+                "allowNull": false,
+                "defaultValue": "",
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(50)",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true
@@ -772,8 +672,8 @@
                     "text": true
                 },
                 "type": "varchar(256)",
-                "allowNull": true,
-                "defaultValue": null,
+                "allowNull": false,
+                "defaultValue": "course",
                 "listview": {
                     "show": true
                 },
@@ -787,8 +687,24 @@
                 "control": {
                     "text": true
                 },
-                "type": "varchar(256)",
-                "allowNull": true,
+                "type": "text",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "userId",
+                "verbose": "userId",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(50)",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true
@@ -813,67 +729,19 @@
         "slug": "user-createdComments",
         "table": {
             "name": "user-createdComments",
-            "pk": "",
+            "pk": "uid",
             "verbose": "user-createdComments"
         },
         "columns": [
-            {
-                "name": "id",
-                "verbose": "id",
-                "control": {
-                    "text": true
-                },
-                "type": "int(11)",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "userId",
-                "verbose": "userId",
-                "control": {
-                    "text": true
-                },
-                "type": "varchar(256)",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "commentId",
-                "verbose": "commentId",
-                "control": {
-                    "text": true
-                },
-                "type": "varchar(256)",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
             {
                 "name": "uid",
                 "verbose": "uid",
                 "control": {
                     "text": true
                 },
-                "type": "varchar(256)",
-                "allowNull": true,
-                "defaultValue": null,
+                "type": "varchar(50)",
+                "allowNull": false,
+                "defaultValue": "",
                 "listview": {
                     "show": true
                 },
@@ -882,13 +750,13 @@
                 }
             },
             {
-                "name": "meta",
-                "verbose": "meta",
+                "name": "id",
+                "verbose": "id",
                 "control": {
                     "text": true
                 },
-                "type": "varchar(256)",
-                "allowNull": true,
+                "type": "varchar(50)",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true
@@ -904,7 +772,39 @@
                     "text": true
                 },
                 "type": "varchar(256)",
-                "allowNull": true,
+                "allowNull": false,
+                "defaultValue": "comment",
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "meta",
+                "verbose": "meta",
+                "control": {
+                    "text": true
+                },
+                "type": "text",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "userId",
+                "verbose": "userId",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(50)",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true
