@@ -21,7 +21,7 @@ jsonApi.define({
         title: jsonApi.Joi.string().empty('')
             .description('The persons name')
             .example('Марина Андреевна Шпак'),
-        photo: jsonApi.Joi.string()
+        photo: jsonApi.Joi.string().empty('')
             .description('The persons photo')
             .example('1.jpg'),
         about: jsonApi.Joi.string().empty('')

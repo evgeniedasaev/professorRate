@@ -1,9 +1,11 @@
+const jsonApi = require("jsonapi-server");
+const dbStore = require("jsonapi-store-relationaldb");
+
 const ENV = process.env.NODE_ENV || "dev";
+const databaseConfig = require('../database.json')[ENV];
 
-const RelationalDbStore = require("jsonapi-store-relationaldb");
-const databaseConfig = require('../database.json');
-
-const store = new RelationalDbStore(databaseConfig[ENV]);
+// const store = new dbStore(databaseConfig[ENV]);
+const store = new jsonApi.MemoryHandler();
 
 // store.initialise = () => {
 //     console.log(arguments);
