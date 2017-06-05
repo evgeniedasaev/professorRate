@@ -31,7 +31,7 @@
                 },
                 "type": "varchar(255)",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "",
                 "listview": {
                     "show": true
                 },
@@ -55,7 +55,7 @@
                 },
                 "type": "int(1) unsigned",
                 "allowNull": true,
-                "defaultValue": "1",
+                "defaultValue": 1,
                 "listview": {
                     "show": true
                 },
@@ -71,7 +71,7 @@
                 },
                 "type": "varchar(100)",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "",
                 "listview": {
                     "show": true
                 },
@@ -99,11 +99,11 @@
                 "name": "yearStart",
                 "verbose": "Начало работы/учебы",
                 "control": {
-                    "year": true
+                    "number": true
                 },
-                "type": "int(4) unsigned",
+                "type": "int(5) unsigned",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": 1900,
                 "listview": {
                     "show": false
                 },
@@ -115,11 +115,11 @@
                 "name": "yearFinish",
                 "verbose": "Конец работы/учебы",
                 "control": {
-                    "year": true
+                    "number": true
                 },
-                "type": "int(4) unsigned",
+                "type": "int(5) unsigned",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": 1900,
                 "listview": {
                     "show": false
                 },
@@ -135,7 +135,7 @@
                 },
                 "type": "float unsigned",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": 0,
                 "listview": {
                     "show": true
                 },
@@ -151,7 +151,7 @@
                 },
                 "type": "varchar(256)",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "",
                 "listview": {
                     "show": false
                 },
@@ -167,7 +167,7 @@
                 },
                 "type": "text",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "",
                 "listview": {
                     "show": false
                 },
@@ -217,7 +217,7 @@
                 },
                 "type": "tinyint(1)",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": true,
                 "listview": {
                     "show": true
                 },
@@ -265,7 +265,7 @@
                 },
                 "type": "varchar(256)",
                 "allowNull": true,
-                "defaultValue": "",
+                "defaultValue": null,
                 "listview": {
                     "show": false
                 },

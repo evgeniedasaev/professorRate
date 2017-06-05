@@ -8,31 +8,32 @@ jsonApi.define({
     description: 'User endpoint.',
     handlers: storeHandler,
     searchParams: {},
+    primaryKey: true,
     attributes: {
-        userType: jsonApi.Joi.number().min(1).max(2).precision(0)
+        userType: jsonApi.Joi.number().empty(0)
             .description('User type ref (Professor or Student)')
             .example(1),
-        login: jsonApi.Joi.string().email()
+        login: jsonApi.Joi.string().empty('')
             .description('User login aka email')
             .example('john.smith@gmail.com'),
-        password: jsonApi.Joi.string()
+        password: jsonApi.Joi.string().empty('')
             .description('User password'),
-        title: jsonApi.Joi.string()
+        title: jsonApi.Joi.string().empty('')
             .description('The persons name')
             .example('Марина Андреевна Шпак'),
         photo: jsonApi.Joi.string()
             .description('The persons photo')
             .example('1.jpg'),
-        about: jsonApi.Joi.string()
+        about: jsonApi.Joi.string().empty('')
             .description('The persons name')
             .example('Марина Андреевна Шпак'),
-        yearStart: jsonApi.Joi.number().min(1900).max(2017).precision(0)
+        yearStart: jsonApi.Joi.number().empty(2017)
             .description('Year of start (work/studing)')
             .example(1991),
-        yearFinish: jsonApi.Joi.number().min(1900).max(2017).precision(0)
+        yearFinish: jsonApi.Joi.number().empty(2017)
             .description('Year of finish (work/studing)')
             .example(2002),
-        rate: jsonApi.Joi.number().min(1).max(5).precision(0)
+        rate: jsonApi.Joi.number().empty(0)
             .description('Year of finish (work/studing)')
             .example(4.2),
         courses: jsonApi.Joi.many('course'),

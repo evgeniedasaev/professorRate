@@ -9,7 +9,7 @@ jsonApi.define({
     handlers: storeHandler,
     searchParams: {},
     attributes: {
-        title: jsonApi.Joi.string()
+        title: jsonApi.Joi.string().empty('')
             .description('The persons name')
             .example('Кафедра ИПОВС'),
         users: jsonApi.Joi.belongsToMany({

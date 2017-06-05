@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 04 2017 г., 23:07
+-- Время создания: Июн 05 2017 г., 10:16
 -- Версия сервера: 5.7.18-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.18-1+deb.sury.org~xenial+1
 
@@ -39,6 +39,15 @@ CREATE TABLE `comments` (
   `isPublished` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Триггеры `comments`
+--
+DROP TRIGGER IF EXISTS `before_insert_comments`;
+DELIMITER $$
+CREATE TRIGGER `before_insert_comments` BEFORE INSERT ON `comments` FOR EACH ROW SET new.id = uuid()
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +69,15 @@ INSERT INTO `courses` (`id`, `title`, `isPublished`) VALUES
 (1, 'Современные проблемы информатики и вычислительной техники', 1),
 (2, 'Автоматизированные информационные системы в экономике', 1),
 (3, 'Информационные технологии управления', 1);
+
+--
+-- Триггеры `courses`
+--
+DROP TRIGGER IF EXISTS `before_insert_courses`;
+DELIMITER $$
+CREATE TRIGGER `before_insert_courses` BEFORE INSERT ON `courses` FOR EACH ROW SET new.id = uuid()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -90,6 +108,15 @@ CREATE TABLE `user-comments` (
   `meta` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Триггеры `user-comments`
+--
+DROP TRIGGER IF EXISTS `before_insert_user_comments`;
+DELIMITER $$
+CREATE TRIGGER `before_insert_user_comments` BEFORE INSERT ON `user-comments` FOR EACH ROW SET new.id = uuid()
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -112,7 +139,25 @@ CREATE TABLE `user-courses` (
 
 INSERT INTO `user-courses` (`id`, `userId`, `courseId`, `uid`, `type`, `meta`) VALUES
 (1, 640065, 1, '', '', ''),
-(2, 640065, 2, '', '', '');
+(2, 640065, 2, '', '', ''),
+(3, 640066, 1, NULL, NULL, NULL),
+(4, 640066, 2, NULL, NULL, NULL),
+(8, 640067, 1, NULL, NULL, NULL),
+(9, 640067, 2, NULL, NULL, NULL),
+(30847, 0, 1, NULL, NULL, NULL),
+(30848, 0, 2, NULL, NULL, NULL),
+(30849, 0, 1, NULL, NULL, NULL),
+(30850, 0, 1, NULL, NULL, NULL),
+(30851, 0, 2, NULL, NULL, NULL);
+
+--
+-- Триггеры `user-courses`
+--
+DROP TRIGGER IF EXISTS `before_insert_user_courses`;
+DELIMITER $$
+CREATE TRIGGER `before_insert_user_courses` BEFORE INSERT ON `user-courses` FOR EACH ROW SET new.id = uuid()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -130,6 +175,15 @@ CREATE TABLE `user-createdComments` (
   `type` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Триггеры `user-createdComments`
+--
+DROP TRIGGER IF EXISTS `before_insert_user_createdComments`;
+DELIMITER $$
+CREATE TRIGGER `before_insert_user_createdComments` BEFORE INSERT ON `user-createdComments` FOR EACH ROW SET new.id = uuid()
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -138,28 +192,40 @@ CREATE TABLE `user-createdComments` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `userType` int(1) UNSIGNED DEFAULT NULL,
-  `type` varchar(256) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `login` varchar(100) DEFAULT NULL,
-  `passwordCrypted` varchar(255) DEFAULT NULL,
-  `yearStart` int(4) UNSIGNED DEFAULT NULL,
-  `yearFinish` int(4) UNSIGNED DEFAULT NULL,
-  `rate` float UNSIGNED DEFAULT NULL,
-  `isPublished` tinyint(1) DEFAULT NULL,
+  `id` varchar(40) NOT NULL,
+  `userType` int(1) UNSIGNED NOT NULL DEFAULT '1',
+  `type` varchar(256) NOT NULL DEFAULT 'user',
+  `title` varchar(255) NOT NULL DEFAULT '""',
+  `login` varchar(100) NOT NULL DEFAULT '""',
+  `yearStart` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `yearFinish` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `rate` float UNSIGNED NOT NULL DEFAULT '0',
+  `isPublished` tinyint(1) NOT NULL DEFAULT '1',
   `meta` varchar(256) DEFAULT NULL,
-  `password` varchar(256) DEFAULT NULL,
-  `photo` varchar(256) DEFAULT NULL,
-  `about` text
+  `password` varchar(256) NOT NULL DEFAULT '""',
+  `photo` varchar(256) NOT NULL DEFAULT '""',
+  `about` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `userType`, `type`, `title`, `login`, `passwordCrypted`, `yearStart`, `yearFinish`, `rate`, `isPublished`, `meta`, `password`, `photo`, `about`) VALUES
-(640065, 1, 'user', 'Евгений Дасаев', 'djekoff@gmail.com', NULL, 0, 0, 0, NULL, '', '12345', '20160921_134344.jpg', '1234');
+INSERT INTO `users` (`id`, `userType`, `type`, `title`, `login`, `yearStart`, `yearFinish`, `rate`, `isPublished`, `meta`, `password`, `photo`, `about`) VALUES
+('0dbc1fde-49be-11e7-917e-78929c9590fa', 1, 'user', 'Евгениц', '', 190, 190, 4, 1, NULL, '', '', ''),
+('3083f7f6-4969-11e7-917e-78929c9590fa', 1, 'user', 'Николай Афанасиевич Оц', '', 0, 0, 4.5, 1, NULL, '12345', '', ''),
+('c0ae769b-4969-11e7-917e-78929c9590fa', 1, 'user', 'Петр', '', 0, 0, 4, 1, NULL, '', '', ''),
+('e996342f-49bb-11e7-917e-78929c9590fa', 1, 'user', 'Евгений', '', 190, 190, 4, 1, NULL, '', '', ''),
+('efe6cc84-4968-11e7-917e-78929c9590fa', 2, 'user', 'Анастасия Тулина', 'tulina', 0, 0, 0, 1, NULL, '12345', '', '');
+
+--
+-- Триггеры `users`
+--
+DROP TRIGGER IF EXISTS `before_insert_mytable`;
+DELIMITER $$
+CREATE TRIGGER `before_insert_mytable` BEFORE INSERT ON `users` FOR EACH ROW SET new.id = uuid()
+$$
+DELIMITER ;
 
 --
 -- Индексы сохранённых таблиц
@@ -205,8 +271,7 @@ ALTER TABLE `user-createdComments`
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `login` (`login`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -236,17 +301,12 @@ ALTER TABLE `user-comments`
 -- AUTO_INCREMENT для таблицы `user-courses`
 --
 ALTER TABLE `user-courses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30852;
 --
 -- AUTO_INCREMENT для таблицы `user-createdComments`
 --
 ALTER TABLE `user-createdComments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT для таблицы `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=640066;SET FOREIGN_KEY_CHECKS=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
