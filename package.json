@@ -233,7 +233,7 @@
     "jsonapi-client": "holidayextras/jsonapi-client",
     "jsonapi-server": "^2.3.2",
     "jsonapi-store-mongodb": "^1.5.2",
-    "jsonapi-store-relationaldb": "^1.2.8",
+    "jsonapi-store-relationaldb": "jackenstein/jsonapi-store-relationaldb",
     "lodash": "4.17.2",
     "minimist": "1.2.0",
     "react": "15.4.1",

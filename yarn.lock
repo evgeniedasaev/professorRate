@@ -4944,9 +4944,9 @@ jsonapi-store-mongodb@^1.5.2:
     mongodb "2.2.26"
     semver "5.3.0"
 
-jsonapi-store-relationaldb@^1.2.8:
+jsonapi-store-relationaldb@jackenstein/jsonapi-store-relationaldb:
   version "1.2.8"
-  resolved "https://registry.yarnpkg.com/jsonapi-store-relationaldb/-/jsonapi-store-relationaldb-1.2.8.tgz#49236bc3e27e0827118245dec0f5be42656d9532"
+  resolved "https://codeload.github.com/jackenstein/jsonapi-store-relationaldb/tar.gz/ac9e2440aaa7a239bdb39b2473b035fb7463a3d9"
   dependencies:
     async "^1.5.2"
     debug "^2.2.0"

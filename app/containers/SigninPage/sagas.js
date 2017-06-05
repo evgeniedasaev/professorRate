@@ -9,20 +9,18 @@ import { userLoaded, userLoadingError } from './actions';
 
 import client from '../../utils/jsonApiClient';
 
-import Guid from 'guid';
-
 /**
  * Github repos request/response handler
  */
 export function* createUser(action) {
     const { userData } = action;
-    userData.id = Guid.raw();
 
     try {
-        const resource = yield call([client, client.create], 'user', userData);
-        resource.sync();
+        const createUser = client.create("user", userData);
 
+        const resource = yield call([createUser, createUser.sync]);
         const user = resource.toJSONTree();
+
         localStorage.setItem('currentUser', JSON.stringify(user));
 
         yield put(userLoaded(user));

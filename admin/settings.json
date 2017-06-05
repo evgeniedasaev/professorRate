@@ -117,7 +117,7 @@
                 "control": {
                     "number": true
                 },
-                "type": "int(5) unsigned",
+                "type": "int(10) unsigned",
                 "allowNull": true,
                 "defaultValue": 1900,
                 "listview": {
@@ -135,7 +135,7 @@
                 },
                 "type": "float unsigned",
                 "allowNull": true,
-                "defaultValue": 0,
+                "defaultValue": 1,
                 "listview": {
                     "show": true
                 },
@@ -194,7 +194,7 @@
                     "link": {
                         "table": "user-courses",
                         "parentPk": "userId",
-                        "childPk": "courseId"
+                        "childPk": "id"
                     },
                     "ref": {
                         "table": "courses",
@@ -344,6 +344,38 @@
                 "editview": {
                     "show": true
                 }
+            },
+            {
+                "name": "type",
+                "verbose": "type",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(50)",
+                "allowNull": false,
+                "defaultValue": "course",
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            },
+            {
+                "name": "meta",
+                "verbose": "meta",
+                "control": {
+                    "text": true
+                },
+                "type": "text",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
             }
         ],
         "mainview": {
@@ -414,52 +446,6 @@
                 }
             },
             {
-                "name": "userId",
-                "verbose": "Адресат",
-                "control": {
-                    "select": true
-                },
-                "type": "int(10) unsigned",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                },
-                "oneToMany": {
-                    "table": "users",
-                    "pk": "id",
-                    "columns": [
-                        "title"
-                    ]
-                }
-            },
-            {
-                "name": "authorId",
-                "verbose": "Автор",
-                "control": {
-                    "select": true
-                },
-                "type": "int(10) unsigned",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                },
-                "oneToMany": {
-                    "table": "users",
-                    "pk": "id",
-                    "columns": [
-                        "title"
-                    ]
-                }
-            },
-            {
                 "name": "isPublished",
                 "verbose": "Комментарий виден на сайте",
                 "control": {
@@ -477,6 +463,54 @@
                 },
                 "editview": {
                     "show": true
+                }
+            },
+            {
+                "name": "type",
+                "verbose": "type",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(50)",
+                "allowNull": false,
+                "defaultValue": "comment",
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            },
+            {
+                "name": "meta",
+                "verbose": "meta",
+                "control": {
+                    "text": true
+                },
+                "type": "text",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
+                }
+            },
+            {
+                "name": "authorName",
+                "verbose": "authorName",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(256)",
+                "allowNull": false,
+                "defaultValue": "\"\"",
+                "listview": {
+                    "show": false
+                },
+                "editview": {
+                    "show": false
                 }
             }
         ],
@@ -702,22 +736,6 @@
             {
                 "name": "userId",
                 "verbose": "userId",
-                "control": {
-                    "text": true
-                },
-                "type": "int(10) unsigned",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "courseId",
-                "verbose": "courseId",
                 "control": {
                     "text": true
                 },

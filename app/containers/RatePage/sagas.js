@@ -11,6 +11,7 @@ import { LOAD_PROFESSOR } from '../ProfessorPage/constants';
 import { getProfessor } from '../ProfessorPage/sagas';
 
 import client from '../../utils/jsonApiClient';
+
 /**
  * Github repos request/response handler
  */
@@ -18,16 +19,36 @@ export function* sendRate(action) {
     const { rateData, author, user } = action;
 
     try {
-        const resourceComment = yield call([client, client.create], 'comment', rateData);
-        resourceComment.sync();
+        let resourceComment = client.create("comment", rateData);
+        resourceComment = yield call([resourceComment, resourceComment.sync]);
 
-        const resourceAuthor = yield call([client, client.get], 'user', author.id);
+        let [resourceAuthor, resourceUser] =  yield [
+            call([client, client.get], 'user', author.id, {
+                include: 'courses,comments,createdComments'
+            }),
+            call([client, client.get], 'user', user.id, {
+                include: 'courses,comments,createdComments'
+            })
+        ];
+
         resourceAuthor.relationships("createdComments").add(resourceComment);
-        resourceAuthor.sync();
+        if (typeof resourceAuthor.courses !== 'undefined') {
+            resourceAuthor.courses.map(
+                courseRelation => resourceAuthor.relationships("courses").add(courseRelation)
+            );
+        }
 
-        const resourceUser = yield call([client, client.get], 'user', user.id);
         resourceUser.relationships("comments").add(resourceComment);
-        resourceUser.sync();
+        if (typeof resourceUser.courses !== 'undefined') {
+            resourceUser.courses.map(
+                courseRelation => resourceUser.relationships("courses").add(courseRelation)
+            );
+        }
+
+        yield [
+            call([resourceAuthor, resourceAuthor.sync]),
+            call([resourceUser, resourceUser.sync])
+        ];
 
         const rate = resourceComment.toJSONTree();
 
