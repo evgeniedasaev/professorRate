@@ -20,7 +20,8 @@ export function* getProfessors() {
       include: 'courses',
       filter: {
         userType: 1,
-        rate: '>4'
+        rate: '>4',
+        isPublished: 1
       }
     });
 

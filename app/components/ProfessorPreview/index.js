@@ -36,6 +36,8 @@ function ProfessorPreview(props) {
                         <ul className="c-list">
                             {
                                 item.courses.map((course, i) => {
+                                    if (!course.isPublished) return null;
+                                    
                                     return (
                                         <li key={i} className="c-list__item">{course.title}</li>
                                     );

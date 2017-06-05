@@ -52,6 +52,8 @@ export class ProfessorPage extends React.PureComponent { // eslint-disable-line 
               <div className="c-card">
                 {
                   professor.comments.map((comment, i) => {
+                    if (!comment.isPublished) return null;
+                    
                     return (
                       <div key={i} className="c-card__item u-window-box--large">
                         <div className="c-text--loud">

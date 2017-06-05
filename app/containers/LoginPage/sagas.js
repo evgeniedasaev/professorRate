@@ -21,7 +21,8 @@ export function* logIn(action) {
         const resource = yield call([client, client.find], 'user', {
             filter: {
                 login,
-                password
+                password,
+                isPublished: 1
             }
         });
 

@@ -17,7 +17,10 @@ export function* getProfessor(action) {
 
   try {
     const resource = yield call([client, client.get], 'user', id, {
-      include: 'courses,comments'
+      include: 'courses,comments',
+      filter: {
+        isPublished: 1
+      }
     });
 
     const professor = resource.toJSONTree();
