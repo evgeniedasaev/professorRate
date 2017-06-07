@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 07 2017 г., 12:54
+-- Время создания: Июн 07 2017 г., 12:58
 -- Версия сервера: 5.7.18-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.18-1+deb.sury.org~xenial+1
 
@@ -100,8 +100,8 @@ DELIMITER ;
 DROP TABLE IF EXISTS `user-comments`;
 CREATE TABLE `user-comments` (
   `uid` varchar(50) NOT NULL DEFAULT '',
-  `id` varchar(50) NOT NULL,
-  `userId` varchar(50) NOT NULL,
+  `id` varchar(50) NOT NULL DEFAULT '""',
+  `userId` varchar(50) NOT NULL DEFAULT '""',
   `type` varchar(256) NOT NULL DEFAULT 'comment',
   `meta` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -134,10 +134,10 @@ DELIMITER ;
 DROP TABLE IF EXISTS `user-courses`;
 CREATE TABLE `user-courses` (
   `uid` varchar(50) NOT NULL DEFAULT '',
-  `id` varchar(50) NOT NULL,
+  `id` varchar(50) NOT NULL DEFAULT '""',
   `type` varchar(256) NOT NULL DEFAULT 'course',
   `meta` text,
-  `userId` varchar(50) NOT NULL
+  `userId` varchar(50) NOT NULL DEFAULT '""'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -169,10 +169,10 @@ DELIMITER ;
 DROP TABLE IF EXISTS `user-createdComments`;
 CREATE TABLE `user-createdComments` (
   `uid` varchar(50) NOT NULL DEFAULT '',
-  `id` varchar(50) NOT NULL,
+  `id` varchar(50) NOT NULL DEFAULT '""',
   `type` varchar(256) NOT NULL DEFAULT 'comment',
   `meta` text,
-  `userId` varchar(50) NOT NULL
+  `userId` varchar(50) NOT NULL DEFAULT '""'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
