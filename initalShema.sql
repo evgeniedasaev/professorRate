@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 05 2017 г., 20:37
+-- Время создания: Июн 07 2017 г., 12:54
 -- Версия сервера: 5.7.18-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.18-1+deb.sury.org~xenial+1
 
@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` varchar(50) NOT NULL,
   `type` varchar(50) NOT NULL DEFAULT 'comment',
-  `meta` text NOT NULL,
+  `meta` text,
   `rate` int(10) NOT NULL DEFAULT '0',
   `comment` text NOT NULL,
   `authorName` varchar(256) NOT NULL DEFAULT '""',
@@ -63,7 +63,7 @@ DROP TABLE IF EXISTS `courses`;
 CREATE TABLE `courses` (
   `id` varchar(50) NOT NULL,
   `type` varchar(50) NOT NULL DEFAULT 'course',
-  `meta` text NOT NULL,
+  `meta` text,
   `title` varchar(256) NOT NULL DEFAULT '""',
   `isPublished` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -103,7 +103,7 @@ CREATE TABLE `user-comments` (
   `id` varchar(50) NOT NULL,
   `userId` varchar(50) NOT NULL,
   `type` varchar(256) NOT NULL DEFAULT 'comment',
-  `meta` text NOT NULL
+  `meta` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -136,7 +136,7 @@ CREATE TABLE `user-courses` (
   `uid` varchar(50) NOT NULL DEFAULT '',
   `id` varchar(50) NOT NULL,
   `type` varchar(256) NOT NULL DEFAULT 'course',
-  `meta` text NOT NULL,
+  `meta` text,
   `userId` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -171,7 +171,7 @@ CREATE TABLE `user-createdComments` (
   `uid` varchar(50) NOT NULL DEFAULT '',
   `id` varchar(50) NOT NULL,
   `type` varchar(256) NOT NULL DEFAULT 'comment',
-  `meta` text NOT NULL,
+  `meta` text,
   `userId` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -204,7 +204,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` varchar(50) NOT NULL,
   `type` varchar(50) NOT NULL DEFAULT 'user',
-  `meta` text NOT NULL,
+  `meta` text,
   `userType` int(10) UNSIGNED NOT NULL DEFAULT '1',
   `login` varchar(256) NOT NULL DEFAULT '""',
   `password` varchar(256) NOT NULL DEFAULT '""',
