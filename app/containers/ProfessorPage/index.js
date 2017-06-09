@@ -40,9 +40,9 @@ export class ProfessorPage extends React.PureComponent { // eslint-disable-line 
           {
             (
               typeof professor.comments === 'undefined' ||
-              professor.comments.length === 0
+              professor.comments.filter(comment => comment.isPublished).length === 0
             ) &&
-            <span>Об этом преподователи еще не успели оставить отзыв.</span>
+            <span>Об этом преподователе еще не успели оставить отзыв.</span>
           }
           
           {
